@@ -1,5 +1,7 @@
 package commands;
 
+import java.util.Random;
+
 import core.Command;
 import dataStructures.*;
 
@@ -8,7 +10,7 @@ public class CommandBetBeans extends Command
 	public CommandBetBeans(KittyRole level, KittyRating rating) { super(level, rating); }
 	
 	@Override
-	public String HelpText() { return "Allows you to bet your beans, set your amount after the command! Warning: House always wins!"
+	public String HelpText() { return "Allows you to bet your treats, set your amount after the command! Warning: House always wins!"
 			+ "\nSets of 3 will get 5x, 4 will get 10x, and 5 will get 1000x"; }
 	
 	@Override
@@ -22,7 +24,7 @@ public class CommandBetBeans extends Command
 			bet = Integer.parseInt(input.args);
 			if(bet < 50)
 			{
-				res.Call("Please bet with at least 50 beans!");
+				res.Call("Please bet with at least 50 treats!");
 				return;
 			}
 		}
@@ -34,7 +36,7 @@ public class CommandBetBeans extends Command
 		
 		if(user.GetBeans() < bet)
 		{
-			res.Call("You don't have enough beans!");
+			res.Call("You don't have enough treats!");
 			return;
 		}
 		
@@ -54,7 +56,7 @@ public class CommandBetBeans extends Command
 			}
 		
 		user.ChangeBeans(bet*win);
-		res.Call("You won " + (bet*win) + " beans!");
+		res.Call("You won " + (bet*win) + " treats!");
 	}
 	
 	private int getWinning(int [] slots)
@@ -69,7 +71,7 @@ public class CommandBetBeans extends Command
 				counter = 1;
 			
 			if(counter == 3)
-				winning = 5;
+				winning = 2;
 			
 			if(counter == 4)
 				winning = 10;
@@ -83,10 +85,12 @@ public class CommandBetBeans extends Command
 	
 	private int[] getSlots() 
 	{
+		Random gen = new Random();
 		int[] nums = new int[5];
 		for (int i = 0; i < nums.length; i++) 
 		{
-			nums[i] = (int) (Math.random() * 5) + 1;
+			nums[i] = Math.abs(gen.nextInt() % 7) + 1;
+			System.out.println(nums [i]);
 		}
 		return nums;
 	}
@@ -137,6 +141,12 @@ public class CommandBetBeans extends Command
 				break;
 			case 5:
 				slotHearts += ":purple_heart:";
+				break;
+			case 6:
+				slotHearts += ":black_heart:";
+				break;
+			case 7:
+				slotHearts += ":broken_heart:";
 				break;
 			}
 		}

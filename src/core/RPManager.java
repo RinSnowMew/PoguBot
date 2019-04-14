@@ -57,6 +57,10 @@ public class RPManager
 		return log;
 	}
 
+	/*
+	 * Upkeep function, runs every input
+	 * 
+	 */
 	public static void Upkeep(JDA kitty) 
 	{
 		Response res = new Response(null, kitty);

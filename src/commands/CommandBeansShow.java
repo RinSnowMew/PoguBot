@@ -8,12 +8,12 @@ public class CommandBeansShow extends Command
 	public CommandBeansShow(KittyRole level, KittyRating rating) { super(level, rating); }
 	
 	@Override
-	public String HelpText() { return "Displays how many beans you have"; };
+	public String HelpText() { return "Displays how many treats you have"; };
 	
 	@Override
 	public void OnRun(KittyGuild guild, KittyChannel channel, KittyUser user, UserInput input, Response res)
 	{
-		String beans = "You have " + user.GetBeans() + " beans!";
+		String beans = "You have " + user.GetBeans() + " treats!";
 		res.Call(beans);
 	}
 }

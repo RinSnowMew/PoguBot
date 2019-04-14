@@ -301,9 +301,10 @@ public class ObjectBuilderFactory
 		manager.Register("indicator", new CommandChangeIndicator(KittyRole.Admin, KittyRating.Safe));
 		
 		manager.Register("poll", new CommandPollManage(KittyRole.Mod, KittyRating.Safe));
-		manager.Register("givebeans", new CommandGiveBeans(KittyRole.Mod, KittyRating.Safe));
+		manager.Register("givetreats", new CommandGiveBeans(KittyRole.Mod, KittyRating.Safe));
 		manager.Register("rpg", new CommandRPG(KittyRole.Mod, KittyRating.Safe));
 
+		manager.Register("tradetreats", new CommandTradeBeans(KittyRole.General, KittyRating.Safe));
 		manager.Register(new String[]{"perish", "thenperish"}, new CommandPerish(KittyRole.General, KittyRating.Safe));
 		manager.Register("yeet", new CommandYeet(KittyRole.General, KittyRating.Safe));
 		manager.Register("ping", new CommandPing(KittyRole.General, KittyRating.Safe));
@@ -318,7 +319,7 @@ public class ObjectBuilderFactory
 		manager.Register("wolfram", new CommandWolfram(KittyRole.General, KittyRating.Safe));
 		manager.Register(new String[] {"c++", "g++", "cplus",}, new CommandColiru(KittyRole.General, KittyRating.Safe));
 		manager.Register(new String[] {"java", "jdoodle" }, new CommandJDoodle(KittyRole.General, KittyRating.Safe));
-		manager.Register("beans", new CommandBeansShow(KittyRole.General, KittyRating.Safe));
+		manager.Register("treats", new CommandBeansShow(KittyRole.General, KittyRating.Safe));
 		manager.Register("role", new CommandRole(KittyRole.General, KittyRating.Safe));
 		manager.Register("bet", new CommandBetBeans(KittyRole.General, KittyRating.Safe));
 		manager.Register("map", new CommandMap(KittyRole.General, KittyRating.Safe));

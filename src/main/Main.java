@@ -26,6 +26,7 @@ public class Main extends ListenerAdapter
 	private static CommandManager commandManager;
 	private static DatabaseManager databaseManager; 
 	private static Stats stats;
+	private static ForbiddenWordManager badWords; 
 	
 	// Main test location
 	public static void main(String[] args) throws InterruptedException, LoginException, Exception
@@ -34,9 +35,10 @@ public class Main extends ListenerAdapter
 		commandManager = ObjectBuilderFactory.ConstructCommandManager();
 		ObjectBuilderFactory.ConstructRPManager();
 		stats = ObjectBuilderFactory.ConstructStats(commandManager);
+		badWords = new ForbiddenWordManager();
 		
-		kitty = new JDABuilder(AccountType.BOT).setToken(Ref.TestToken).buildBlocking();
-		kitty.getPresence().setGame(Game.playing("with a new build"));
+		kitty = new JDABuilder(AccountType.BOT).setToken(Ref.Token).buildBlocking();
+		kitty.getPresence().setGame(Game.playing("in his hoard"));
 		kitty.addEventListener(new Main());
 	}
 
@@ -68,9 +70,12 @@ public class Main extends ListenerAdapter
 		//RP logging system
 		RPManager.instance.addLine(channel, user, input);
 		
+		//Forbidden word tracker 
+		badWords.check(user, input, response);
+		
 		// Issue the command
 		commandManager.InvokeOnNewThread(guild, channel, user, input, response);
-		
+			
 		// Run any upkeep we need to
 		PerCommandUpkeep();
 	}

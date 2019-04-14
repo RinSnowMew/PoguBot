@@ -8,7 +8,7 @@ public class CommandGiveBeans extends Command
 	public CommandGiveBeans (KittyRole level, KittyRating rating) { super(level, rating); }
 	
 	@Override
-	public String HelpText() { return "Gives beans to the mentioned users!"; }
+	public String HelpText() { return "Gives treats to the mentioned users!"; }
 	
 	@Override
 	public void OnRun(KittyGuild guild, KittyChannel channel, KittyUser user, UserInput input, Response res)
@@ -32,7 +32,7 @@ public class CommandGiveBeans extends Command
 		for(int i = 0; i < input.mentions.length; i++)
 		{
 			input.mentions[i].ChangeBeans(beans);
-			res.Call("Gave " + input.mentions[i].name + " " + beans + " beans!");
+			res.Call("Gave " + input.mentions[i].name + " " + beans + " treats!");
 		}
 	}
 }
